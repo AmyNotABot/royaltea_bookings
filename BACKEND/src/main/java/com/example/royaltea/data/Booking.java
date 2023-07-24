@@ -4,7 +4,7 @@ public class Booking {
 
     String bookingName;
     String bookingMail;
-    Long bookingAmount;
+    int bookingAmount;
 
     public String getBookingName() {
         return bookingName;
@@ -22,15 +22,15 @@ public class Booking {
         this.bookingMail = bookingMail;
     }
 
-    public Long getBookingAmount() {
+    public int getBookingAmount() {
         return bookingAmount;
     }
 
-    public void setBookingAmount(Long bookingAmount) {
+    public void setBookingAmount(int bookingAmount) {
         this.bookingAmount = bookingAmount;
     }
 
-    public Booking(String bookingName, String bookingMail, Long bookingAmount) {
+    public Booking(String bookingName, String bookingMail, int bookingAmount) {
         this.bookingName = bookingName;
         this.bookingMail = bookingMail;
         this.bookingAmount = bookingAmount;

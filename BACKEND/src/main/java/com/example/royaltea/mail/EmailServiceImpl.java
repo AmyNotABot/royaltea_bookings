@@ -14,10 +14,10 @@ public class EmailServiceImpl {
         this.emailSender = emailSender;
     }
 
-    public void sendSimpleMessage(String to, String name, int amountOfSeats) {
+    public void sendSimpleMessage(Booking booking) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@royaltea.com");
-        message.setTo(to);
+        message.setTo(booking.getBookingMail());
         message.setSubject("YOUR RESERVATION");
         message.setText("\n" +
                 "Hello and thank you very much for your reservation! \n" +
@@ -28,12 +28,10 @@ public class EmailServiceImpl {
                 "\t${dateOfEvent}\n" +
                 "\t${locationOfEvent}\n" +
                 "\t\n" +
-                "\tBooking number: ${bookingId}\n" +
-                "\tName: ${bookingName}\n" +
-                "\tContact: ${bookingMail}\n" +
-                "\tAmount of people: ${bookingPeople}\n" +
+                "\tNAME: " + booking.getBookingName() +
+                "\tSEATS:" + booking.getBookingAmount() +
                 "\t\n" +
-                "With the new season we are no longer offering preferred seatings, instead we got free seats. \n" +
+                "With the new season we are no longer offering preferred seats, instead we got free seats. \n" +
                 "So please make sure you drop in on time so you can snatch your favourite seats and don't miss anything of the show. \n" +
                 "\n" +
                 "Also please make sure to bring this mail, either printed or on your device, \n" +

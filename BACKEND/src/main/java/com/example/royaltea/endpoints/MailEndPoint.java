@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MailEndPoint {
-    @GetMapping("mail")
-    public void sendMail(){
+    @PostMapping("mail")
+    public void sendMail(@RequestBody String to, String name, int amountOfSeats){
+        Booking bookingAdd = new Booking(to, name, amountOfSeats);
         System.out.println("ICH TRIGGERE");
 
         MailSenderConfig mailConfDing = new MailSenderConfig();
         EmailServiceImpl mailDing = new EmailServiceImpl(mailConfDing.getJavaMailSender());
 
-        mailDing.sendSimpleMessage();
+        mailDing.sendSimpleMessage(bookingAdd);
     }
 
 }
