@@ -15,7 +15,7 @@ public class MailSenderConfig {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("booking.service.royaltea@gmail.com");
+        mailSender.setUsername("booking.service.royaltea@gmail.com"); // IM ZWEIFELSFALL HIER DIE ADRESSE ÄNDERN
         mailSender.setPassword("eyxavfylsyhcwdfl");
 
         Properties props = mailSender.getJavaMailProperties();
