@@ -19,7 +19,6 @@ public class ListConverter {
             headerRow.createCell(0).setCellValue("Name");
             headerRow.createCell(1).setCellValue("Seats");
             headerRow.createCell(2).setCellValue("Email");
-
             // Populate data rows
             int rowNum = 1;
             for (Booking booking : bookings) {
@@ -28,9 +27,8 @@ public class ListConverter {
                 dataRow.createCell(1).setCellValue(booking.getBookingAmount());
                 dataRow.createCell(2).setCellValue(booking.getBookingMail());
             }
-
             // Write the workbook to the output file
-            try (FileOutputStream fileOut = new FileOutputStream("./spreadSheets/spreadshit.xlsx" )) { //IM ZWEIFELSFALL HIER DEN PATH ÄNDERN
+            try (FileOutputStream fileOut = new FileOutputStream("./spreadSheets/spreadshit.xlsx")) { //IM ZWEIFELSFALL HIER DEN PATH ÄNDERN
                 workbook.write(fileOut);
             }
         } catch (IOException e) {

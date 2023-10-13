@@ -4,8 +4,6 @@ import com.example.royaltea.data.Booking;
 import com.example.royaltea.data.BookingRepository;
 import com.example.royaltea.data.ListConverter;
 import com.example.royaltea.mail.EmailServiceImpl;
-import com.example.royaltea.mail.MailSenderConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,25 +14,35 @@ import java.util.List;
 
 public class Endpoints {
     BookingRepository bookingRepository;
-    MailSenderConfig mailConfDing = new MailSenderConfig();
     ListConverter listConverter = new ListConverter();
+    private final EmailServiceImpl mailDing;
+
+    public Endpoints(BookingRepository bookingRepository, EmailServiceImpl mailDing) {
+        this.bookingRepository = bookingRepository;
+        this.mailDing = mailDing;
+    }
 
     @PostMapping("mail")
     public void sendMail(@RequestBody String to, String name, int amountOfSeats) {
         //---Implementations
         Booking bookingAdd = new Booking(to, name, amountOfSeats);
-        EmailServiceImpl mailDing = new EmailServiceImpl(mailConfDing.getJavaMailSender());
         //---Database adding stuff
         bookingRepository.save(bookingAdd);
         //---Mail-Stuff
         mailDing.sendSimpleMessage(bookingAdd);
     }
+//TODO: FIND OUT WHY POST AND NOTHING SONST
+    @PostMapping("login")
+    public void loginUser(@RequestBody LoginRequest loginRequest){
+        System.out.println(loginRequest.getUsername());
+        System.out.println(loginRequest.getPassword());
+
+    }
 
     @GetMapping("milchkaffee")
     public void allBookings() {
-         List<Booking> allBookings = bookingRepository.findAll();
-         listConverter.convertToSpreadsheet(allBookings);
+        List<Booking> allBookings = bookingRepository.findAll();
+        listConverter.convertToSpreadsheet(allBookings);
     }
-public Endpoints(BookingRepository bookingRepository){this.bookingRepository = bookingRepository;}
 }
 

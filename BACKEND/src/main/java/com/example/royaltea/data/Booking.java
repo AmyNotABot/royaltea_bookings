@@ -1,16 +1,24 @@
 package com.example.royaltea.data;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 
 @Entity
 public class Booking {
     String bookingName;
     String bookingMail;
     int bookingAmount;
-    @jakarta.persistence.Id
+    @Id
+    @GeneratedValue
     private Long id;
-
     public Booking() {
+    }
+
+    public Booking(String bookingName, String bookingMail, int bookingAmount) {
+        this.bookingName = bookingName;
+        this.bookingMail = bookingMail;
+        this.bookingAmount = bookingAmount;
     }
 
     public String getBookingName() {
@@ -43,11 +51,5 @@ public class Booking {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Booking(String bookingName, String bookingMail, int bookingAmount) {
-        this.bookingName = bookingName;
-        this.bookingMail = bookingMail;
-        this.bookingAmount = bookingAmount;
     }
 }

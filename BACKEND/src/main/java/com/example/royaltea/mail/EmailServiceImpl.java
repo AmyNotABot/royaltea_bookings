@@ -3,9 +3,9 @@ package com.example.royaltea.mail;
 import com.example.royaltea.data.Booking;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class EmailServiceImpl {
 
     private final JavaMailSender emailSender;
